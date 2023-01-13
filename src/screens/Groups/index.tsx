@@ -31,6 +31,10 @@ export function Groups() {
     }
   }
 
+  function handleOpenGroup(group: string){
+    navigation.navigate('player', { group });
+  }
+
   useFocusEffect(useCallback(() => {
     //console.log('usefocus usado');
     fetchGroups();
@@ -51,6 +55,7 @@ export function Groups() {
         renderItem={({ item }) => (
           <GroupCard 
             title={item}
+            onPress={() => handleOpenGroup(item)}
           />
       )}
       contentContainerStyle={groups.length === 0 && {flex: 1}}
