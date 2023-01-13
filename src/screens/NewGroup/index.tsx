@@ -5,6 +5,7 @@ import { Header } from "@components/Header";
 import { Hightlight } from "@components/Highlight";
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
+import { groupCreate } from "@storage/group/groupCreate";
 
 import { Container, Content, Icon} from "./styles";
 
@@ -15,9 +16,18 @@ export function NewGroup(){
 
     const navigation = useNavigation();
 
-    function handleNew(){
+    async function handleNew(){
+        try{
+             await groupCreate(group);
         navigation.navigate('player',{ group });
+        }
+        catch(error){
+            console.log(error);
+        }
     }
+
+   
+
     return(
         <Container>
             <Header showBackButton/>
